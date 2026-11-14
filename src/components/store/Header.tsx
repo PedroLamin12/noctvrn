@@ -42,12 +42,25 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer className="mt-32 border-t border-border">
+    <footer className="mt-32 border-t border-border bg-card">
       <div className="mx-auto max-w-[1600px] px-5 py-16 md:px-10">
-        <p className="font-display text-[18vw] leading-[0.8] tracking-tighter md:text-[14vw]">NOCTVRN</p>
-        <div className="mt-10 flex flex-col justify-between gap-4 font-mono font-semibold text-[11px] uppercase tracking-[0.1em] text-muted-foreground md:flex-row">
+        <div className="grid gap-10 md:grid-cols-5">
+          <div className="md:col-span-2">
+            <p className="font-display text-5xl">NOCTVRN</p>
+            <p className="mt-4 max-w-xs text-sm text-muted-foreground">Streetwear de luxo com edições numeradas, feito para durar décadas.</p>
+          </div>
+          {[["Comprar", ["Novidades", "Outerwear", "Tops", "Footwear", "Sale"]], ["Ajuda", ["Central de ajuda", "Trocas e devoluções", "Rastrear pedido", "Guia de tamanhos"]], ["Empresa", ["Sobre nós", "Lojas", "Carreiras", "Sustentabilidade"]]].map(([t, items]) => (
+            <div key={t as string}>
+              <p className="text-sm font-semibold">{t as string}</p>
+              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                {(items as string[]).map((i) => <li key={i}><Link to="/shop" className="link-underline hover:text-foreground">{i}</Link></li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div className="mt-14 flex flex-col justify-between gap-4 border-t border-border pt-6 text-xs text-muted-foreground md:flex-row">
           <span>© 2026 Noctvrn Studio — Projeto conceito</span>
-          <span>São Paulo · Milão · Tóquio</span>
+          <span>Pix · Visa · Mastercard · Elo · Amex — até 10x sem juros</span>
         </div>
       </div>
     </footer>

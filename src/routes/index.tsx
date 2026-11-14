@@ -1,5 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, RotateCcw, ShieldCheck, Truck, CreditCard } from "lucide-react";
+import jacket from "@/assets/p-jacket.jpg";
+import boot from "@/assets/p-boot.jpg";
+import bag from "@/assets/p-bag.jpg";
+import hoodie from "@/assets/p-hoodie.jpg";
 import hero from "@/assets/hero.jpg";
 import coat from "@/assets/p-coat.jpg";
 import { products } from "@/lib/products";
@@ -39,6 +43,30 @@ function Index() {
         </div>
       </section>
 
+      <section className="mx-auto mt-6 grid max-w-[1600px] grid-cols-2 gap-3 px-5 md:grid-cols-4 md:px-10">
+        {[[Truck, "Frete grátis", "Acima de R$ 1.500"], [RotateCcw, "Troca fácil", "Até 30 dias"], [CreditCard, "Até 10x sem juros", "Em todos os cartões"], [ShieldCheck, "Compra segura", "Autenticidade garantida"]].map(([Icon, t, d]) => {
+          const I = Icon as typeof Truck;
+          return (
+            <div key={t as string} className="flex items-center gap-3 rounded-2xl bg-card p-4">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-secondary"><I className="h-5 w-5" /></span>
+              <div><p className="text-sm font-semibold">{t as string}</p><p className="text-xs text-muted-foreground">{d as string}</p></div>
+            </div>
+          );
+        })}
+      </section>
+
+      <section className="mx-auto max-w-[1600px] px-5 pt-20 md:px-10">
+        <h2 className="font-display text-5xl md:text-6xl">Compre por categoria</h2>
+        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {[[jacket, "Outerwear"], [hoodie, "Tops"], [boot, "Footwear"], [bag, "Acessórios"]].map(([img, c]) => (
+            <Link key={c} to="/shop" className="group relative overflow-hidden rounded-2xl bg-muted">
+              <img src={img} alt={c} loading="lazy" width={768} height={1024} className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-background px-4 py-2 text-sm font-semibold">{c} <ArrowUpRight className="h-4 w-4" /></span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section className="mx-auto max-w-[1600px] px-5 pt-24 md:px-10">
         <div className="flex items-end justify-between border-b border-border pb-6">
           <h2 className="font-display text-5xl md:text-7xl">Novidades</h2>
@@ -68,7 +96,29 @@ function Index() {
 
       <section className="mx-auto mt-32 max-w-[1600px] px-5 md:px-10">
         <div className="grid grid-cols-2 gap-x-4 gap-y-12 md:grid-cols-4">
-          {products.slice(4).map((p, i) => <ProductCard key={p.id} p={p} index={i} />)}
+          {products.slice(4, 12).map((p, i) => <ProductCard key={p.id} p={p} index={i} />)}
+        </div>
+      </section>
+      <section className="mx-auto mt-24 max-w-[1600px] px-5 md:px-10">
+        <div className="flex items-end justify-between border-b border-border pb-6">
+          <h2 className="font-display text-5xl md:text-7xl">Mais desejados</h2>
+          <Link to="/shop" className="link-underline text-sm font-semibold">Ver tudo</Link>
+        </div>
+        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-12 md:grid-cols-4">
+          {products.slice(12).map((p, i) => <ProductCard key={p.id} p={p} index={i} />)}
+        </div>
+      </section>
+
+      <section className="mx-auto mt-32 max-w-[1600px] px-5 md:px-10">
+        <div className="flex flex-col items-start justify-between gap-8 rounded-3xl bg-foreground p-10 text-background md:flex-row md:items-center md:p-16">
+          <div>
+            <h2 className="font-display text-5xl md:text-6xl">Ganhe 10% na primeira compra</h2>
+            <p className="mt-3 max-w-md text-sm opacity-70">Assine a newsletter e receba acesso antecipado aos drops e edições numeradas.</p>
+          </div>
+          <form onSubmit={(e) => { e.preventDefault(); (e.currentTarget as HTMLFormElement).reset(); }} className="flex w-full max-w-md gap-2 rounded-full bg-background p-1.5">
+            <input type="email" required placeholder="Seu e-mail" className="flex-1 bg-transparent px-4 text-sm text-foreground outline-none" />
+            <button className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground">Assinar</button>
+          </form>
         </div>
       </section>
     </>
