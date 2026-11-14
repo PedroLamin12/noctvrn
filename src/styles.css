@@ -32,7 +32,7 @@
 @theme inline {
   --font-display: "Instrument Serif", ui-serif, serif;
   --font-sans: "Manrope", ui-sans-serif, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-mono: "Manrope", ui-sans-serif, sans-serif;
   --shadow-drawer: var(--shadow-drawer);
   --animate-marquee: marquee 30s linear infinite;
   --animate-fade-up: fade-up 0.8s cubic-bezier(.2,.7,.2,1) both;
@@ -79,7 +79,7 @@
 }
 
 :root {
-  --radius: 0rem;
+  --radius: 0.75rem;
   --background: oklch(0.965 0.006 85);
   --foreground: oklch(0.16 0.005 60);
   --card: oklch(0.975 0.005 85);

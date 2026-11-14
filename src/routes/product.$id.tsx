@@ -38,7 +38,7 @@ function ProductPage() {
 
   return (
     <div className="mx-auto max-w-[1600px] px-5 pt-8 md:px-10">
-      <Link to="/shop" className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground"><ChevronLeft className="h-3 w-3" /> Loja / {p.category}</Link>
+      <Link to="/shop" className="inline-flex items-center gap-1 font-mono font-semibold text-[10px] uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground"><ChevronLeft className="h-3 w-3" /> Loja / {p.category}</Link>
       <div className="mt-6 grid gap-10 md:grid-cols-12">
         <div className="flex gap-3 md:col-span-7">
           <div className="hidden flex-col gap-3 md:flex">
@@ -53,32 +53,32 @@ function ProductPage() {
             onMouseMove={(e) => { const r = e.currentTarget.getBoundingClientRect(); setZoom({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 }); }}
             onMouseLeave={() => setZoom(null)}
           >
-            <img key={view} src={p.image} alt={p.name} width={768} height={1024} className="animate-fade-up aspect-[3/4] w-full object-cover transition-transform duration-300"
+            <img key={view} src={p.image} alt={p.name} width={768} height={1024} className="animate-fade-up aspect-[3/4] w-full rounded-2xl object-cover transition-transform duration-300"
               style={zoom ? { transform: "scale(2)", transformOrigin: `${zoom.x}% ${zoom.y}%` } : { transform: `scale(${views[view]?.s ?? 1})`, transformOrigin: views[view]?.pos }} />
-            <span className="absolute bottom-3 left-3 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">Passe o cursor para ampliar</span>
+            <span className="absolute bottom-3 left-3 font-mono font-semibold text-[9px] uppercase tracking-[0.1em] text-muted-foreground">Passe o cursor para ampliar</span>
           </div>
         </div>
 
         <div className="md:col-span-5 md:sticky md:top-28 md:self-start">
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">{p.line}{p.tag ? ` — ${p.tag}` : ""}</p>
+          <p className="font-mono font-semibold text-[10px] uppercase tracking-[0.14em] text-accent">{p.line}{p.tag ? ` — ${p.tag}` : ""}</p>
           <h1 className="mt-3 font-display text-5xl leading-none md:text-7xl">{p.name}</h1>
           <p className="mt-4 font-mono text-lg">{formatPrice(p.price)}</p>
           <p className="mt-6 max-w-md text-muted-foreground">{p.description}</p>
 
           <div className="mt-8">
-            <div className="flex justify-between font-mono text-[10px] uppercase tracking-[0.2em]"><span>Tamanho {warn && !size && <span className="text-accent">— selecione</span>}</span><span className="text-muted-foreground">Cor: {p.colors.join(" / ")}</span></div>
+            <div className="flex justify-between font-mono font-semibold text-[10px] uppercase tracking-[0.1em]"><span>Tamanho {warn && !size && <span className="text-accent">— selecione</span>}</span><span className="text-muted-foreground">Cor: {p.colors.join(" / ")}</span></div>
             <div className="mt-3 grid grid-cols-5 gap-2">
               {p.sizes.map((s) => (
-                <button key={s} onClick={() => setSize(s)} className={`border py-3 font-mono text-xs transition-colors ${size === s ? "border-foreground bg-foreground text-background" : "border-border hover:border-foreground"}`}>{s}</button>
+                <button key={s} onClick={() => setSize(s)} className={`rounded-full border py-3 font-mono font-semibold text-xs transition-colors ${size === s ? "border-foreground bg-foreground text-background" : "border-border hover:border-foreground"}`}>{s}</button>
               ))}
             </div>
           </div>
-          <button onClick={() => (size ? add(p.id, size) : setWarn(true))} className="mt-6 w-full bg-foreground py-5 font-mono text-xs uppercase tracking-[0.3em] text-background transition-colors hover:bg-accent hover:text-accent-foreground">
+          <button onClick={() => (size ? add(p.id, size) : setWarn(true))} className="mt-6 w-full rounded-full bg-foreground py-5 shadow-lg font-mono font-semibold text-xs uppercase tracking-[0.14em] text-background transition-colors hover:bg-accent hover:text-accent-foreground">
             Adicionar à sacola
           </button>
           <ul className="mt-10 divide-y divide-border border-y border-border">
-            {p.details.map((d) => <li key={d} className="py-3 font-mono text-[11px] uppercase tracking-[0.15em]">✦ {d}</li>)}
-            <li className="py-3 font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">Envio em 48h · Trocas em 30 dias</li>
+            {p.details.map((d) => <li key={d} className="py-3 font-mono font-semibold text-[11px] uppercase tracking-[0.15em]">✦ {d}</li>)}
+            <li className="py-3 font-mono font-semibold text-[11px] uppercase tracking-[0.15em] text-muted-foreground">Envio em 48h · Trocas em 30 dias</li>
           </ul>
         </div>
       </div>
